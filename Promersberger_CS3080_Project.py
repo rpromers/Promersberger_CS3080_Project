@@ -34,7 +34,8 @@ def generate_and_show():
     def copy_to_clipboard():
         root.clipboard_clear()
         root.clipboard_append(password)
-        root.update()  # Keeps clipboard content after window closes
+        # Keeps clipboard content after window closes
+        root.update()
     
     tk.Button(popup, text="Copy to Clipboard", command=copy_to_clipboard).pack(pady=5)
     tk.Button(popup, text="Close", command=popup.destroy).pack(pady=5)
@@ -58,3 +59,4 @@ tk.Checkbutton(root, text="Include Mixed Case", variable=mixed_var).pack(anchor=
 tk.Button(root, text="Generate Password", command=generate_and_show).pack()
 
 root.mainloop()
+
