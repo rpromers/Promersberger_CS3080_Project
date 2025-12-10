@@ -3,6 +3,7 @@ import secrets
 import tkinter as tk
 from tkinter import messagebox
 
+# Generates the function, default length of 12, with sybols and mixed case
 def generate_password(length=12, symbols=True, mixed=True):
     chars=string.digits
     chars+=string.ascii_letters if mixed else string.ascii_lowercase
@@ -11,11 +12,13 @@ def generate_password(length=12, symbols=True, mixed=True):
     return ''.join(secrets.choice(chars) for _ in range(length))
 
 def generate_and_show():
+    #Collects user input and calls generate function
     length=int(length_input.get())
     symbols=symbols_var.get()
     mixed=mixed_var.get()
     password=generate_password(length, symbols, mixed)
 
+    #Initial tkinter popup window for password dis
     popup=tk.Toplevel(root)
     popup.title("Password Generator")
     popup_width,popup_height= 300,150
@@ -40,6 +43,7 @@ def generate_and_show():
     tk.Button(popup, text="Copy to Clipboard", command=copy_to_clipboard).pack(pady=5)
     tk.Button(popup, text="Close", command=popup.destroy).pack(pady=5)
 
+# Interface for intial pop up window and password parameter setting
 root = tk.Tk()
 root.title("CS3080 Password Generator")
 root.geometry("300x150")
@@ -49,7 +53,7 @@ tk.Label(root, text="Password Length:").pack()
 length_input = tk.Entry(root)
 length_input.insert(0, "12")
 length_input.pack()
-
+#Buttons for symbols, mixed case and generate password
 symbols_var = tk.BooleanVar()
 tk.Checkbutton(root, text="Include Symbols", variable=symbols_var).pack(anchor="w")
 
@@ -58,5 +62,7 @@ tk.Checkbutton(root, text="Include Mixed Case", variable=mixed_var).pack(anchor=
 
 tk.Button(root, text="Generate Password", command=generate_and_show).pack()
 
+#So that multiple passwords can be generated without restarting the program
 root.mainloop()
+
 
